@@ -6,7 +6,7 @@
 #    By: ilopez-r <ilopez-r@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/21 11:49:26 by ilopez-r          #+#    #+#              #
-#    Updated: 2024/02/23 16:19:22 by ilopez-r         ###   ########.fr        #
+#    Updated: 2024/02/27 15:43:32 by ilopez-r         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,13 +19,13 @@ FILES = src/pipex.c\
 		src/split_commands.c\
 		src/split_path.c\
 		src/get_route.c\
-		src/exec_commands.c\
+		src/exec_route.c\
 
 BONUS = srcb/pipex_bonus.c\
 		srcb/split_commands_bonus.c\
 		srcb/split_path_bonus.c\
 		srcb/get_route_bonus.c\
-		srcb/exec_commands_bonus.c\
+		srcb/exec_route_bonus.c\
 
 OBJS = $(FILES:.c=.o)
 

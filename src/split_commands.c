@@ -6,7 +6,7 @@
 /*   By: ilopez-r <ilopez-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 15:25:32 by ilopez-r          #+#    #+#             */
-/*   Updated: 2024/02/23 16:20:42 by ilopez-r         ###   ########.fr       */
+/*   Updated: 2024/02/27 15:35:34 by ilopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	ft_free_pipex(char **str, int i)
 	free(str);
 }
 
-static int	ft_counter_pipex(char const *s, char c, char quote)
+static int	ft_counter_pipex(char const *s, char c)
 {
 	int		count;
 	int		flag;
@@ -31,48 +31,47 @@ static int	ft_counter_pipex(char const *s, char c, char quote)
 		while ((*s == c || *s == '\'' || *s == '\"') && *s != '\0')
 		{
 			if (*s == '\'' || *s == '\"')
-			{
-				quote = *s;
 				flag = !flag;
-			}
 			s++;
 		}
 		count++;
 		if (flag)
-			while (*s != quote && *s != '\0')
+		{
+			while (*s != '\'' && *s != '\"' && *s != '\0')
 				s++;
-		else
-			while (*s != c && *s != '\0')
-				s++;
+			flag = !flag;
+		}
+		while (*s != c && *s != '\0')
+			s++;
 	}
 	return (count);
 }
 
-static int	ft_len_pipex(char const *s, char c, int d, char quote)
+static int	ft_len_pipex(char const *s, char c, int *d)
 {
 	int	len;
 	int	flag;
 
 	len = 0;
 	flag = 0;
-	while (s[d] != '\0' && s[d] == quote)
+	while (s[*d] != '\0' && s[*d] != c)
 	{
-		while (s[d] == quote)
+		while ((s[*d] == '\'' || s[*d] == '\"') && s[*d] != '\0')
 		{
 			flag = !flag;
-			d++;
-			len++;
+			(*d)++;
+			if (s[*d] == c || s[*d] == '\0')
+				flag = !flag;
+			if (flag && (s[*d] == c || s[*d] == '\0'))
+				return ((*d)--, len);
+			if (s[*d] == c)
+				(*d)++;
 		}
-		while (flag && s[d] != quote && s[d] != '\0')
+		while ((flag || s[*d] != c) && s[*d] != '\'' && s[*d] != '\"')
 		{
-			d++;
+			(*d)++;
 			len++;
 		}
-	}
-	while (s[d] != '\0' && s[d] != c && s[d] != quote)
-	{
-		d++;
-		len++;
 	}
 	return (len);
 }
@@ -82,27 +81,26 @@ char	**ft_split_pipex(char const *s, char c)
 	char	**str;
 	int		i;
 	int		d;
-	char	quote;
+	int		len;
 
 	d = 0;
 	i = -1;
-	quote = 0;
-	str = malloc((ft_counter_pipex (s, c, quote) + 1) * sizeof(char *));
+	str = malloc((ft_counter_pipex (s, c) + 1) * sizeof(char *));
 	if (!str)
 		return (0);
-	while (++i < ft_counter_pipex (s, c, quote))
+	while (++i < ft_counter_pipex (s, c))
 	{
+		len = ft_len_pipex(s, c, &d);
+		str[i] = ft_substr(s, (d - len), len);
 		while (s[d] == c)
 			d++;
-		str[i] = ft_substr(s, d, ft_len_pipex(s, c, d, quote));
 		if (!(str[i]))
 		{
 			ft_free_pipex(str, i);
 			return (0);
 		}
-		d = d + ft_len_pipex(s, c, d, quote);
 	}
-	str[i] = 0;
+	str[i] = NULL;
 	return (str);
 }
 
@@ -116,7 +114,7 @@ int	split_commands(int argc, char **argv, t_data *data)
 	data->cmd = ft_calloc((argc - 3) + 1, sizeof(char **));
 	if (!data->cmd)
 		return (EXIT_FAILURE);
-	while (i < argc - 3)
+	while (i < argc - 2 && j < argc - 1)
 	{
 		data->cmd[i] = ft_split_pipex (argv[j], ' ');
 		if (!data->cmd[i])

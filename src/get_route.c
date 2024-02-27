@@ -6,7 +6,7 @@
 /*   By: ilopez-r <ilopez-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 15:26:04 by ilopez-r          #+#    #+#             */
-/*   Updated: 2024/02/23 16:31:05 by ilopez-r         ###   ########.fr       */
+/*   Updated: 2024/02/26 15:53:30 by ilopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ int	get_route(t_data *data, int len, int i, int j)
 		{
 			routetmp = ft_strjoin(data->path[j], "/");
 			routetmp2 = ft_strjoin(routetmp, data->cmd[i][0]);
-			if (access(routetmp2, F_OK) == 0 && access(routetmp2, X_OK))
+			free(routetmp);
+			if (access(routetmp2, F_OK) == 0 && access(routetmp2, X_OK) == 0)
 			{
 				data->route[i] = routetmp2;
 				routetmp2 = NULL;
 				break ;
 			}
-			free(routetmp);
 			free(routetmp2);
 		}
 	}

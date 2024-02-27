@@ -6,7 +6,7 @@
 /*   By: ilopez-r <ilopez-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 12:02:17 by ilopez-r          #+#    #+#             */
-/*   Updated: 2024/02/23 17:53:04 by ilopez-r         ###   ########.fr       */
+/*   Updated: 2024/02/27 15:43:07 by ilopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,6 @@ typedef struct s_data
 int		split_commands(int argc, char**argv, t_data *data);
 int		split_path(char **path, t_data *data);
 int		get_route(t_data *d, int len, int i, int j);
-void	exec_commands(t_data *data);
+void	exec_route(t_data *data);
 
 #endif
