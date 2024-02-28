@@ -58,6 +58,7 @@ clean:
 
 fclean: clean
 	@rm -fr $(NAME) $(NAME_BONUS)
+	@rm -f file2
 	@make fclean -s -C $(LIBFT_PATH)
 
 re: fclean all
