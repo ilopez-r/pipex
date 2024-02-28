@@ -114,7 +114,7 @@ int	split_commands(int argc, char **argv, t_data *data)
 	data->cmd = ft_calloc((argc - 3) + 1, sizeof(char **));
 	if (!data->cmd)
 		return (EXIT_FAILURE);
-	while (i < argc - 2 && j < argc - 1)
+	while (i < argc - 3)
 	{
 		data->cmd[i] = ft_split_pipex (argv[j], ' ');
 		if (!data->cmd[i])
