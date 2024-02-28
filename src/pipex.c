@@ -61,7 +61,7 @@ int	main(int argc, char **argv, char **env)
 {
 	t_data	*data;
 	
-	if (argc != 5 || argv[1][0] == '\0' || argv[2][0] == '\0')
+	if (argc != 5 || argv[2][0] == '\0' || argv[3][0] == '\0')
 		return (ft_printf ("Arguments error\n"), EXIT_FAILURE);
 	data = ft_calloc(1, sizeof(t_data));
 	if (!data)
