@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   split_commands.c                                   :+:      :+:    :+:   */
+/*   split_commands_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ilopez-r <ilopez-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/21 15:25:32 by ilopez-r          #+#    #+#             */
-/*   Updated: 2024/02/28 12:12:10 by ilopez-r         ###   ########.fr       */
+/*   Created: 2024/02/28 12:22:33 by ilopez-r          #+#    #+#             */
+/*   Updated: 2024/02/28 15:14:24 by ilopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
 
 static void	ft_free_pipex(char **str, int i)
 {
@@ -104,13 +104,15 @@ char	**ft_split_pipex(char const *s, char c)
 	return (str);
 }
 
-int	split_commands(int argc, char **argv, t_data *data)
+int	split_commands_bonus(int argc, char **argv, t_data *data, int flag_doc)
 {
 	int	i;
 	int	j;
 
 	i = 0;
 	j = 2;
+	if (flag_doc == 1)
+		j = 3;
 	data->cmd = ft_calloc((argc - 3) + 1, sizeof(char **));
 	if (!data->cmd)
 		return (EXIT_FAILURE);

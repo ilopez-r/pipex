@@ -6,7 +6,7 @@
 #    By: ilopez-r <ilopez-r@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/21 11:49:26 by ilopez-r          #+#    #+#              #
-#    Updated: 2024/02/27 15:43:32 by ilopez-r         ###   ########.fr        #
+#    Updated: 2024/02/28 13:14:23 by ilopez-r         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,7 @@ clean:
 	@make clean -s -C $(LIBFT_PATH)
 
 fclean: clean
-	@rm -fr $(NAME) $(NAME_BONUS)
+	@rm -fr $(NAME) $(NAME_BONUS) 
 	@rm -f file2
 	@make fclean -s -C $(LIBFT_PATH)
 
