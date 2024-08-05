@@ -1,10 +1,12 @@
-# pipex
-**Pipex project school 42**
+![image](https://github.com/ilopez-r/resources/blob/main/covers/cover-pipex-bonus.png?raw=true)
 
-<p align="left">
-  <img width="620" height="120" src="https://i.ibb.co/yRBnd63/Capture-d-e-cran-le-2021-08-16-a-17-00-53.png">
-</p>
+## Subject
+This is the [subject](https://github.com/ilopez-r/resources/blob/main/subjects/02_pipex_en.pdf) for this project.
 
+## Introduction
+This project will allow you to discover, by using it in your program, the operation of a UNIX mechanism that you already know.
+
+## Description
 This program takes the infile, outfile to redirect the STDIN (<), STDOUT (>) and 2 commands to pipe. To execute the mandatory program, type the command listed below. The arguments will be processed as same as < infile cmd1 | cmd2 > outfile on the shell.
 ```
 ./pipex <infile> <cmd1> <cmd2> <outfile>
